@@ -29,8 +29,8 @@ public class ContactRepository {
         return todoRepository;
     }
 
-    public Collection<Contact> findContacts() {
-        List<Contact> contacts = ofy().load().type(Contact.class).list();
+    public Collection<Contact> findContactsByUser(String userId) {
+        List<Contact> contacts = ofy().load().type(Contact.class).filter("user", userId).list();
         return contacts;
     }
 
@@ -52,12 +52,13 @@ public class ContactRepository {
         contact.setFirstName(editedContact.getFirstName());
         contact.setLastName(editedContact.getLastName());
         contact.setPhoneNumber(editedContact.getPhoneNumber());
+        contact.setAddress(editedContact.getAddress());
         ofy().save().entity(contact).now();
 
         return contact;
     }
 
-    public void remove(Contact c) {
+    public void remove(String userId, Contact c) {
         ofy().delete().entity(c).now();
     }
 }

@@ -2,6 +2,7 @@ package me.maximepvrt.endpoints;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 /**
  * Created by Maxime on 19/03/15.
@@ -12,6 +13,7 @@ public class Contact {
     @Id
     private Long id;
 
+    @Index
     private String user;
 
     private String firstName;
@@ -19,6 +21,8 @@ public class Contact {
     private String lastName;
 
     private String phoneNumber;
+
+    private String address;
 
     public Long getId() {
         return id;
@@ -60,4 +64,11 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
